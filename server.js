@@ -20,5 +20,5 @@ app.get("/", (req, res) => {
 app.use("/api", require("./routes/timezones"));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
