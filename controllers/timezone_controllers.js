@@ -43,7 +43,7 @@ exports.getDateTime = (req, res) => {
 exports.timezones = (req, res) => {
   try {
     return res.status(200).json({
-      supportedTimesones: timeZones,
+      supportedTimezones: timeZones,
     });
   } catch (error) {
     return res.status(400).json({
