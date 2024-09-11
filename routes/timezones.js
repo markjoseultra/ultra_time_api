@@ -1,7 +1,12 @@
 const express = require("express");
-const { timezone } = require("../controllers/timezone_controllers");
+const {
+  getDateTime,
+  timezones,
+} = require("../controllers/timezone_controllers");
 const router = express.Router();
 
-router.get("/time", timezone);
+router.get("/time", getDateTime);
+
+router.get("/timezones", timezones);
 
 module.exports = router;

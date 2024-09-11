@@ -5,12 +5,21 @@ const timeZones = moment.tz.names();
 
 function responseFormat(timezoneTime, res) {
   return res.json({
+    currentTime: timezoneTime.format("hh:mm:s a"),
+    meridian: timezoneTime.format("a"),
+    year: timezoneTime.format("y"),
+    month: timezoneTime.format("MMMM"),
+    day: timezoneTime.format("D"),
+    week: timezoneTime.format("w"),
+    dayOfWeek: timezoneTime.format("dddd"),
+    timezone: timezoneTime.format("Z"),
+    iso8601: timezoneTime.format("yyyy-MM-DD"),
     isoFormat: timezoneTime.format(),
     millisecondsSinceEpoch: new Date(timezoneTime.format()).getTime(),
   });
 }
 
-exports.timezone = (req, res) => {
+exports.getDateTime = (req, res) => {
   try {
     var timezone = req.query.tz;
 
@@ -25,7 +34,21 @@ exports.timezone = (req, res) => {
     return res.status(400).json({
       error: `Timezone not supported`,
       sampleUrl: "https://ultra-time-api.onrender.com/api/time?tz=Asia/Manila",
+      supportedTimezones: timeZones,
+    });
+  }
+};
+
+exports.timezones = (req, res) => {
+  try {
+    return res.status(200).json({
       supportedTimesones: timeZones,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: `Timezone not supported`,
+      sampleUrl: "https://ultra-time-api.onrender.com/api/time?tz=Asia/Manila",
+      supportedTimezones: timeZones,
     });
   }
 };
